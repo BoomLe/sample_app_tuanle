@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  #connect to the helper
   include SessionsHelper
   add_flash_types :info, :error, :warning, :success
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.

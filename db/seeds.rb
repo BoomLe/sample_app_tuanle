@@ -7,3 +7,20 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# Tạo 1 người dùng chính
+User.create!(name: "Example User",
+             email: "example@railstutorial.org",
+             password: "foobar",
+             password_confirmation: "foobar",
+             admin: true)
+
+# Tạo thêm 99 người dùng ảo bằng vòng lặp
+99.times do |n|
+  name = "User-#{n + 1}"
+  email = "example-#{n + 1}@railstutorial.org"
+  password = "password"
+  User.create!(name: name,
+               email: email,
+               password: password,
+               password_confirmation: password)
+end

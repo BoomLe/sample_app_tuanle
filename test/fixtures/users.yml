@@ -1,0 +1,10 @@
+tuanle:
+  name: Tuan Le Example
+  email: tuanle@example.com
+  password_digest: <%= User.digest('password') %>
+
+# Bạn có thể thêm một người dùng nữa để test cho phong phú
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>

@@ -1,26 +1,57 @@
 require "test_helper"
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
-      test "login with invalid information" do
-        #1. john website
-        get login_path
-        assert_template "sessions/new"
+  def setup
+    # Lấy dữ liệu người dùng mẫu từ file fixtures/users.yml
+    # Hãy đảm bảo trong file đó bạn đã đặt tên là 'tuanle:'
+    @user = users(:tuanle)
+  end
 
-        #2 login empty
-        post login_path, params: { session: { email: "", password: "" } }
+  test "login with invalid information" do
+    get login_path
+    assert_template "sessions/new"
+    post login_path, params: { session: { email: "", password: "" } }
+    assert_response :unprocessable_entity
+    assert_template "sessions/new"
+    assert_not flash.empty?
+    get root_path
+    assert flash.empty?
+  end
 
-        #3 check unprocessable_enity
-        assert_response :unprocessable_entity
-        assert_template 'sessions/new'
+  test "login with valid information followed by logout" do
+    get login_path
+    post login_path, params: { session: { email: @user.email,
+                                         password: "password" } }
+    assert logged_in?
+    assert_redirected_to @user
+    follow_redirect!
+    assert_template "users/show"
+    assert_select "a[href=?]", login_path, count: 0
+    assert_select "a[href=?]", logout_path
+    assert_select "a[href=?]", user_path(@user)
+    delete logout_path
+    assert_not logged_in?
+    assert_response :see_other
+    assert_redirected_to root_url
+    # Mô phỏng việc người dùng bấm Logout ở tab thứ 2 (Edge Case)
+    delete logout_path
+    follow_redirect!
+    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", logout_path, count: 0
+    assert_select "a[href=?]", user_path(@user), count: 0
+  end
 
-        #4 check the signal table
-         assert_not flash.empty?
+  test "login with remembering" do
+    log_in_as(@user, remember_me: "1")
+    # Kiểm tra xem cookie có chứa token không
+    assert_not_empty cookies[:remember_token]
+  end
 
-        #5 return home
-        get root_path
-
-        #6 check the signal table is clear
-        assert flash.empty?
-
-      end
+  test "login without remembering" do
+    # Đăng nhập trước để tạo cookie
+    log_in_as(@user, remember_me: "1")
+    # Đăng nhập lại với remember_me = '0' để xóa cookie
+    log_in_as(@user, remember_me: "0")
+    assert_empty cookies[:remember_token]
+  end
 end

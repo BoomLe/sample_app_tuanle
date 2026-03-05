@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_22_160337) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_04_105219) do
   create_table "users", force: :cascade do |t|
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
+    t.string "activation_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "name"
     t.string "password_digest"
+    t.string "remember_digest"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end

@@ -4,14 +4,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   def setup
     ActionMailer::Base.deliveries.clear
   end
-test "valid signup information with account activation" do
+
+  test "valid signup information with account activation" do
     get signup_path
 
     assert_difference "User.count", 1 do
-      post users_path, params: { user: { name:  "Example User",
-                                         email: "user@example.com",
-                                         password:              "password",
-                                         password_confirmation: "password" } }
+      post users_path, params: { user: { name: "Example User",
+                                        email: "user@example.com",
+                                        password: "password",
+                                        password_confirmation: "password" } }
     end
 
     # check to send email
@@ -28,7 +29,5 @@ test "valid signup information with account activation" do
     follow_redirect!
     assert_template "users/show"
     assert logged_in?
-
-  
   end
 end

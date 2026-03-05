@@ -2,6 +2,8 @@ tuanle:
   name: Tuan Le Example
   email: tuanle@example.com
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 # Bạn có thể thêm một người dùng nữa để test cho phong phú
 archer:

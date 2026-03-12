@@ -38,7 +38,12 @@ footer ul li {
   margin-left: 15px;
 }
 /* Tinh chỉnh typography (font chữ) cho toàn trang */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -65,4 +70,88 @@ p {
 img {
   display: block;
   margin: 0 auto;
+}
+/* ========================================= */
+/* MICROPOSTS (Giao diện bài viết)           */
+/* ========================================= */
+
+.microposts {
+  list-style: none;
+  padding: 0;
+}
+
+.microposts li {
+  padding: 10px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.microposts .user {
+  margin-top: 5em;
+  padding-top: 0;
+}
+
+.microposts .content {
+  display: block;
+  margin-left: 60px;
+}
+
+.microposts .content img {
+  display: block;
+  padding: 5px 0;
+}
+
+.microposts .timestamp {
+  color: #777;
+  display: block;
+  margin-left: 60px;
+}
+
+.microposts .gravatar {
+  float: left;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+aside textarea {
+  height: 100px;
+  margin-bottom: 5px;
+}
+
+span.picture {
+  margin-top: 10px;
+}
+
+span.picture input {
+  border: 0;
+}
+/* Trang trí cho Sidebar ở Trang chủ */
+aside section {
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+aside section:first-child {
+  border: 0;
+  padding-top: 0;
+}
+
+aside section span {
+  display: block;
+  margin-bottom: 3px;
+  line-height: 1.2;
+}
+
+aside section h1 {
+  font-size: 1.4em; /* Làm tên nhỏ lại cho cân đối */
+  text-align: left;
+  letter-spacing: -1px;
+  margin-bottom: 3px;
+  margin-top: 0px;
+}
+
+/* Định dạng cho ô nhập văn bản */
+textarea {
+  resize: vertical; /* Chỉ cho phép kéo dài theo chiều dọc */
+  width: 100%; /* Full chiều rộng cột */
+  margin-bottom: 10px;
 }

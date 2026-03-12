@@ -17,8 +17,8 @@ class ActiveSupport::TestCase
   end
 
   def is_logged_in?
-      !session[:user_id].nil?
-    end
+    !session[:user_id].nil?
+  end
 
   # Đăng nhập với tư cách một người dùng cụ thể
   def log_in_as(user, password: "password", remember_me: "1")

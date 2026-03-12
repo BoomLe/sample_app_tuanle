@@ -1,0 +1,22 @@
+orange:
+  content: "I just ate an orange!"
+  created_at: <%= 10.minutes.ago %>
+  user: tuanle
+
+tau_star_trek:
+  content: "Check out the new Star Trek movie!"
+  created_at: <%= 3.years.ago %>
+  user: tuanle
+
+# Dùng vòng lặp tạo thêm 30 bài viết nữa để kích hoạt thanh Phân trang
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: "Đây là bài viết ảo số <%= n %> để test phân trang"
+  created_at: <%= 42.days.ago %>
+  user: tuanle
+<% end %>
+
+ants:
+  content: "Đây là bài viết của Archer, Tuanle cấm đụng vào!"
+  created_at: <%= 2.years.ago %>
+  user: archer

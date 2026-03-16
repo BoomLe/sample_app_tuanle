@@ -44,6 +44,7 @@ gem "image_processing", "~> 1.2"
 gem "rufo"
 gem "will_paginate", "~> 3.3"
 gem "bootstrap-will_paginate", "~> 1.0"
+gem "cloudinary", "~> 2.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -77,5 +78,5 @@ end
 
 group :production do
   gem "pg"
-  gem "cloudinary", "~> 2.0"
+  # gem "cloudinary", "~> 2.0"
 end

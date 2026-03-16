@@ -33,4 +33,32 @@ class UserTest < ActiveSupport::TestCase
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
+
+  test "should follow and unfollow a user" do
+    tuanle = users(:tuanle)
+    archer = users(:archer)
+    assert_not tuanle.following?(archer)
+    tuanle.follow(archer)
+    assert tuanle.following?(archer)
+    assert archer.followers.include?(tuanle)
+    tuanle.unfollow(archer)
+    assert_not tuanle.following?(archer)
+  end
+
+  test "feed should have the right posts" do
+    tuanle = users(:tuanle)
+    archer = users(:archer)
+    lana = users(:lana)
+
+    lana.microposts.each do |post_following|
+      assert tuanle.feed.include?(post_following)
+    end
+
+    tuanle.microposts.each do |post_self|
+      assert tuanle.feed.include?(post_self)
+    end
+    archer.microposts.each do |post_unfollowed|
+      assert_not tuanle.feed.include?(post_unfollowed)
+    end
+  end
 end

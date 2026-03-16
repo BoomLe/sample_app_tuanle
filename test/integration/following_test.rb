@@ -9,7 +9,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
 
   test "following page" do
     get following_user_path(@user)
-    assert_not @user.following.empty? 
+    assert_not @user.following.empty?
     assert_match @user.following.count.to_s, response.body
     @user.following.each do |user|
       assert_select "a[href=?]", user_path(user)
@@ -43,13 +43,13 @@ class FollowingTest < ActionDispatch::IntegrationTest
 
   test "should follow a user with Ajax" do
     assert_difference "@user.following.count", 1 do
-      post relationships_path, params: {followed_id: @other.id}, as: :turbo_stream
+      post relationships_path, params: { followed_id: @other.id }, as: :turbo_stream
     end
   end
-  
+
   test "should unfollow a user witj Ajax" do
     @user.follow(@other)
-    relationship  = @user.active_relationships.find_by(followed_id: @other.id)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference "@user.following.count", -1 do
       delete relationship_path(relationship), as: :turbo_stream
     end

@@ -1,0 +1,5 @@
+production:
+  cloud_name: <%= ENV['dp5zojwhf'] %>
+  api_key: <%= ENV['514529563835688'] %>
+  api_secret: <%= ENV['8j2rGygdq-NpcFoV_vr18rdMJ2w'] %>
+  secure: true

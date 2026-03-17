@@ -50,6 +50,12 @@ production:
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     url: <%= ENV['DATABASE_URL'] %>
 
-  cable: *primary_production
-  cache: *primary_production
-  queue: *primary_production
+  cable:
+    <<: *primary_production
+    migrations_paths: db/cable_migrate
+  cache:
+    <<: *primary_production
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    migrations_paths: db/queue_migrate

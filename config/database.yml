@@ -43,10 +43,13 @@ test:
 #   encoding: unicode
 #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: sample_app_production # Hoặc tên dự án của bạn
-  username: sample_app
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  primary: &primary_production
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    url: <%= ENV['DATABASE_URL'] %>
+
+  cable: *primary_production
+  cache: *primary_production
+  queue: *primary_production

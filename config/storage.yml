@@ -9,9 +9,9 @@ local:
 cloudinary:
   service: Cloudinary
   # Bạn có thể điền trực tiếp để test, nhưng tốt nhất là dùng biến môi trường
-  cloud_name: <%= ENV['dp5zojwhf'] %>
-  api_key: <%= ENV['514529563835688'] %>
-  api_secret: <%= ENV['8j2rGygdq-NpcFoV_vr18rdMJ2w'] %>
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

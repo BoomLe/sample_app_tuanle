@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # add_flash_types :info, :error, :warning, :success
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.search(params[:query]).paginate(page: params[:page])
   end
 
   def show

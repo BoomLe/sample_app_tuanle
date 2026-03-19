@@ -102,6 +102,14 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def self.search(query)
+    if query.present?
+      where("name ILIKE ?", "%#{query}%")
+    else 
+      all 
+    end
+  end
+
   private
 
   # conver an email to lowcase
